@@ -282,3 +282,24 @@ elif menu == "🔍 Findings":
             sum_image = image if sum_image is None else sum_image + image
             count += 1
 
+            mean_image = (sum_image / count).astype(np.uint8)
+            std_image = np.std(np.array(images), axis=0).astype(np.uint8)
+            
+            montage_images = [cv2.resize(cv2.imread(img_path), (128, 128)) for img_path in files[:6] if cv2.imread(img_path) is not None]
+            montage = np.hstack(montage_images) if montage_images else None
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.image(cv2.cvtColor(mean_image, cv2.COLOR_BGR2RGB), caption=f"📌 Mean Image - {cls.capitalize()}")
+                st.markdown("**The average image shows the dominant features of this class.**")
+            with col2:
+                st.image(cv2.cvtColor(std_image, cv2.COLOR_BGR2RGB), caption=f"📌 Variability Map - {cls.capitalize()}")
+                st.markdown("**Variability highlights intra-class differences, revealing feature inconsistencies.**")
+            with col3:
+                if montage is not None:
+                    st.image(cv2.cvtColor(montage, cv2.COLOR_BGR2RGB), caption=f"📌 Montage - {cls.capitalize()}")
+                    st.markdown("**A collage of sample images provides an overall view of the class.**")
+                else:
+                    st.warning(f"Not enough images to generate a montage for {cls}.")
+
+
