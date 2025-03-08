@@ -346,3 +346,25 @@ elif menu == "🧪 Hypothesis":
         """,
         unsafe_allow_html=True,
     )
+
+# Technical Page
+elif menu == "💻 Technical":
+    st.title("💻 Technical Details")
+    st.markdown("### Model Architecture and Performance")
+    st.markdown("""
+    **Model Architecture:**  
+    - 3 Convolutional layers with 32, 64, and 128 filters respectively, using ReLU activation.
+    - MaxPooling layers following each convolutional layer.
+    - A Flatten layer followed by a Dense layer with 128 neurons and 50% Dropout.
+    - A final Dense layer with 1 neuron and sigmoid activation for binary classification.
+    
+    **Compilation:**  
+    - Optimizer: Adam  
+    - Loss: Binary Crossentropy  
+    - Metric: Accuracy
+    
+    **Training:**  
+    - Uses ImageDataGenerator with data augmentation.  
+    - Trained for 10 epochs with 20% of data reserved for validation.
+    """)
+    
