@@ -76,3 +76,20 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
+st.sidebar.markdown("#### Download Cherry Leaf Images")
+st.sidebar.markdown("[Download Images from Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)")
+
+# Function to list images in a folder
+def list_images_in_folder(folder):
+    """Returns a list of image file paths from a given directory."""
+    if os.path.exists(folder):
+        return [os.path.join(folder, f) for f in os.listdir(folder) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    return []
+
+# Set the page title
+st.title("🍒 Cherry Leaf Mildew Detector 🍃")
+
+# Sidebar menu for navigation
+menu = st.sidebar.radio(
+    "📌 Navigation", ["🏠 Home", "📸 Prediction", "📊 Analysis",  "🔍 Findings", "🧪 Hypothesis", "💻 Technical","🔒 Ethics & NDA"])
