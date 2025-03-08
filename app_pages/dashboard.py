@@ -209,4 +209,30 @@ elif menu == "📊 Analysis":
     st.pyplot(fig)
     st.caption("Proportion of healthy vs. infected leaves")
 
-    
+    st.subheader("📉 Line Chart - Accuracy History")
+    history_file = "../jupyter_notebooks/history.npy"
+    if os.path.exists(history_file):
+        history_data = np.load(history_file, allow_pickle=True).item()
+        fig, ax = plt.subplots(figsize=(4, 2.5))
+        ax.plot(history_data["accuracy"], label="Training", linestyle='-', marker='o')
+        ax.plot(history_data["val_accuracy"], label="Validation", linestyle='-', marker='s')
+        ax.set_title("Accuracy Evolution", fontsize=12)
+        ax.set_xlabel("Epochs", fontsize=10)
+        ax.set_ylabel("Accuracy", fontsize=10)
+        ax.tick_params(axis='both', labelsize=8)
+        ax.legend(fontsize=8)
+        st.pyplot(fig)
+        st.caption("Model accuracy history during training")
+    else:
+        dummy_history = {"accuracy": [0.7, 0.8, 0.85, 0.9], "val_accuracy": [0.65, 0.75, 0.8, 0.85]}
+        fig, ax = plt.subplots(figsize=(4, 2.5))
+        ax.plot(dummy_history["accuracy"], label="Training", linestyle='-', marker='o')
+        ax.plot(dummy_history["val_accuracy"], label="Validation", linestyle='-', marker='s')
+        ax.set_title("Accuracy Evolution", fontsize=12)
+        ax.set_xlabel("Epochs", fontsize=10)
+        ax.set_ylabel("Accuracy", fontsize=10)
+        ax.tick_params(axis='both', labelsize=8)
+        ax.legend(fontsize=8)
+        st.pyplot(fig)
+        st.caption("Model accuracy history during training (sample data)")
+
