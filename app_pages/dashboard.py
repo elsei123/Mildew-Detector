@@ -141,3 +141,16 @@ elif menu == "📸 Prediction":
     """, unsafe_allow_html=True)
 
     uploaded_files = st.file_uploader("🖼️ Select images...", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+
+    if uploaded_files:
+        model = load_trained_model()
+        threshold = 0.5
+        results = []
+        for uploaded_file in uploaded_files:
+            image = Image.open(uploaded_file)
+            image_resized = image.resize((256, 256))
+            st.image(image_resized, caption="Uploaded Image (256x256 px)",use_column_width=False)
+
+            
+
+
