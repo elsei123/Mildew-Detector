@@ -186,3 +186,27 @@ elif menu == "📸 Prediction":
             mime='text/csv'
         )
 
+# Analysis Page
+elif menu == "📊 Analysis":
+    st.header("📈 Model Analysis")
+    
+    labels = ["Healthy", "Powdery Mildew"]
+    values = [1200, 900]
+    
+    st.subheader("📊 Bar Chart - Prediction Distribution")
+    fig, ax = plt.subplots(figsize=(4, 2.5))
+    ax.bar(labels, values, color=["green", "red"])
+    ax.set_ylabel("Number of Samples", fontsize=10)
+    ax.set_title("Prediction Distribution", fontsize=12)
+    ax.tick_params(axis='both', labelsize=8)
+    st.pyplot(fig)
+    st.caption("Distribution of predictions between healthy and infected leaves")
+    
+    st.subheader("🟠 Pie Chart - Classification Proportion")
+    fig, ax = plt.subplots(figsize=(4, 2.5))
+    ax.pie(values, labels=labels, autopct='%1.1f%%', colors=["green", "red"])
+    ax.set_title("Proportion of Healthy vs. Powdery Mildew", fontsize=12)
+    st.pyplot(fig)
+    st.caption("Proportion of healthy vs. infected leaves")
+
+    
