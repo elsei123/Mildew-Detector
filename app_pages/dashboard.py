@@ -128,3 +128,16 @@ if menu == "🏠 Home":
             ✅ <b>Higher Profitability</b>: Effective protection against harvest losses.
         </p>
     """, unsafe_allow_html=True)
+
+# Prediction Page
+elif menu == "📸 Prediction":
+    st.header("📌 Make a Prediction")
+    st.markdown("""
+    <p class='content'>
+        In this section, you can upload images of cherry leaves for the artificial intelligence model to analyze
+        and determine whether the leaf is <b>healthy</b> or <b>infected with powdery mildew</b>. 
+        Early detection can help in disease prevention and control, improving agricultural production quality.
+    </p>
+    """, unsafe_allow_html=True)
+
+    uploaded_files = st.file_uploader("🖼️ Select images...", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
