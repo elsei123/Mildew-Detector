@@ -253,7 +253,7 @@ elif menu == "🔍 Findings":
         These analyses help identify unique characteristics of diseased leaves that the model learns to detect.
         """
     )
-    data_dir = "cherry-leaves/"  # Adjust the path based on your structure
+    data_dir = "cherry-leaves/"
     classes = ["healthy", "powdery_mildew"]
 
     for cls in classes:
@@ -263,8 +263,22 @@ elif menu == "🔍 Findings":
 
         if len(files) == 0:
             st.warning(f"No images found for class {cls}. Please check the dataset folder.")
-            continue  # Skip to the next class if no images are found
+            continue 
 
         sum_image = None
         images = []
         count = 0
+
+        for img_path in files:
+            image = cv2.imread(img_path)
+
+            if image is None:
+                st.error(f"Failed to load image: {img_path}")
+                continue
+
+            image = cv2.resize(image, (128, 128))
+            image = image.astype(np.float32)
+            images.append(image)
+            sum_image = image if sum_image is None else sum_image + image
+            count += 1
+
