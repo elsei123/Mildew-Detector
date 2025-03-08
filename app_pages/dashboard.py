@@ -151,6 +151,22 @@ elif menu == "📸 Prediction":
             image_resized = image.resize((256, 256))
             st.image(image_resized, caption="Uploaded Image (256x256 px)",use_column_width=False)
 
-            
+            img_array = np.array(image_resized)
+            if img_array.shape[-1] == 4:
+                img_array = img_array[:, :, :3]
+            img_array = img_array.astype('float32') / 255.0
+            img_array = np.expand_dims(img_array, axis=0)
+
+            prediction = model.predict(img_array)[0][0]
+            label = "Healthy 🍃" if prediction < threshold else "Powdery Mildew ⚠️"
+            confidence = float(prediction)
+            results.append({"Image": uploaded_file.name, "Class": label, "Confidence": confidence})
+
+            fig, ax = plt.subplots(figsize=(6, 3))
+            ax.bar(["Healthy", "Powdery Mildew"], [1 - confidence, confidence], color=["green", "red"])
+            ax.set_ylabel("Probability", fontsize=12)
+            ax.set_title("Leaf Classification", fontsize=14)
+            ax.tick_params(axis='both', labelsize=10)
+            st.pyplot(fig)
 
 
