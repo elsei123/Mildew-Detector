@@ -46,3 +46,12 @@ def get_sample_data():
         'Value': np.random.randint(50, 150, 12)
     })
     return data.set_index('Month')
+
+def list_images_in_folder(folder, extensions=('.jpg', '.jpeg', '.png')):
+    """
+    Lists the image files in a folder.
+    """
+    if os.path.exists(folder):
+        return [f for f in os.listdir(folder) if f.lower().endswith(extensions)]
+    return []
+
