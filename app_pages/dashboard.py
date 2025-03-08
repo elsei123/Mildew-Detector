@@ -302,4 +302,14 @@ elif menu == "🔍 Findings":
                 else:
                     st.warning(f"Not enough images to generate a montage for {cls}.")
 
-
+        st.markdown(
+        """
+        ### 🔍 Summary & Key Observations
+        
+        - The **Mean Image** for healthy leaves exhibits consistent color and structure, while infected leaves display irregularities.
+        - The **Variability Map** indicates higher variation in infected leaves, reflecting the randomness of fungal spread.
+        - The **Montage** illustrates distinct visual patterns that differentiate the two classes.
+        
+        These findings validate the effectiveness of using visual cues for precise disease detection.
+        """
+    )
