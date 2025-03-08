@@ -169,4 +169,20 @@ elif menu == "📸 Prediction":
             ax.tick_params(axis='both', labelsize=10)
             st.pyplot(fig)
 
+            if label == "Healthy 🍃":
+                st.write("<p style='color: green; text-align: center; font-size: 20px;'>No anomalies detected in the leaf.</p>", unsafe_allow_html=True)
+            else:
+                st.write("<p style='color: red; text-align: center; font-size: 20px;'>Powdery mildew detected on the leaf.</p>", unsafe_allow_html=True)
+                
+        st.write("🔍 **Prediction Results**")
+        df_results = pd.DataFrame(results)
+        st.dataframe(df_results)
+
+        csv = df_results.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="Download Results Table",
+            data=csv,
+            file_name='prediction_results.csv',
+            mime='text/csv'
+        )
 
