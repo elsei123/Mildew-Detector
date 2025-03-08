@@ -1,7 +1,7 @@
-jupyter_notebooks/
-cherry-leaves/
-kaggle/
 src/model.h5
+cherry-leaves/
+jupyter_notebooks/
+kaggle/
 __pycache__/
 *.pyc
 *.log
