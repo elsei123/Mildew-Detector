@@ -236,3 +236,20 @@ elif menu == "📊 Analysis":
         st.pyplot(fig)
         st.caption("Model accuracy history during training (sample data)")
 
+# Findings Page
+elif menu == "🔍 Findings":
+    st.title("🔍 Key Findings and Insights")
+
+    st.markdown(
+        """
+        ### Visual Analysis of Cherry Leaf Images
+        To better understand the dataset and the differences between **healthy** and **powdery mildew-infected** leaves, 
+        we conducted a thorough visual study that includes:
+        
+        - **Mean Image:** The average image per class, highlighting common features.
+        - **Variability Map:** The standard deviation across images, showcasing intra-class variations.
+        - **Montage:** A collage of sample images providing an overview of the dataset's diversity.
+        
+        These analyses help identify unique characteristics of diseased leaves that the model learns to detect.
+        """
+    )
