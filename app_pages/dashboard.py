@@ -253,3 +253,18 @@ elif menu == "🔍 Findings":
         These analyses help identify unique characteristics of diseased leaves that the model learns to detect.
         """
     )
+    data_dir = "cherry-leaves/"  # Adjust the path based on your structure
+    classes = ["healthy", "powdery_mildew"]
+
+    for cls in classes:
+        st.markdown(f"### 🍃 Class: {cls.capitalize()}")
+        folder = os.path.join(data_dir, cls)
+        files = list_images_in_folder(folder)
+
+        if len(files) == 0:
+            st.warning(f"No images found for class {cls}. Please check the dataset folder.")
+            continue  # Skip to the next class if no images are found
+
+        sum_image = None
+        images = []
+        count = 0
