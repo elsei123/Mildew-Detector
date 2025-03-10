@@ -1,0 +1,5 @@
+jupyter_notebooks/
+cherry-leaves/
+__pycache__/
+*.pyc
+*.log
