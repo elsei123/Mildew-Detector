@@ -25,4 +25,4 @@ COPY . .
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "app_pages/dashboard.py", "--server.enableCORS", "false"]
+CMD ["sh", "-c", "streamlit run app_pages/dashboard.py --server.port ${PORT:-8501} --server.enableCORS false"]
